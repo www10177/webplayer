@@ -14,13 +14,14 @@ margin: 0;
     font-size:22px;
 }
 </style>
-</head> 
+</head>
 
 <body>
   <div>
-  <video id="player" class="video-js vjs-default-skin" controls preload="auto" width="720" height="480">
+  <video id="player" class="video-js vjs-default-skin"controls muted  preload="auto" width="720" height="480">
  <source id='videoSource' src="../static/video/Alan Walker - Alone.mp4" type="video/mp4" />
 </video>
+
 </div>
 <div>
 <button class='button' onclick="playVideo('../static/video/glory day (Japanese).mp4','video/mp4')">Glory Day (Japanese) </button>
@@ -29,11 +30,13 @@ margin: 0;
 <button class='button' onclick="playVideo('../static/video/Galantis - Hunter (Official Music Video).mp4','video/mp4')">Galantis - Hunter</button>
 <button class='button' onclick="playVideo('../static/video/Marshmello - Alone.mp4','video/mp4')">Marshmello - Alone</button>
 </div>
-<button class='button' onclick=post('/result/')>MIXBTN</button>
+<button class='button' onclick=post('/result/')>MIX</button>
+<button class='button' onclick=post('/turing/')>Turing Test</button>
 </body>
 
 
 <script type="text/javascript">
+
 function playVideo(videoSource, type) {
   var videoElm = document.getElementById('player');
   var videoSourceElm = document.getElementById('videoSource');

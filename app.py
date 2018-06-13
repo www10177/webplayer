@@ -4,7 +4,8 @@ from os.path import join,abspath,isfile
 from os import remove
 from urllib.parse import unquote
 from subprocess import call
-app=Flask(__name__,static_url_path='/static')
+from sys import argv
+app=Flask(__name__,static_url_path='/static',root_path='.')
 videoPath = join('./','static/','video/')
 tempPath= join('./','static/','temp/')
 # @app.route('/')
@@ -43,7 +44,7 @@ def mix(basename, overlay):
     tempVideoName = join(tempPath,basename)
     if isfile(tempVideoName):
         remove(tempVideoName)
-    call(['./ffmpeg', '-i', basePath, '-i', audioFileName, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental', '-map', '0:v:0', '-map', '1:a:0', tempVideoName])
+    call(['ffmpeg', '-i', basePath, '-i', audioFileName, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental', '-map', '0:v:0', '-map', '1:a:0', tempVideoName])
 
 
 @app.route('/')
@@ -60,8 +61,21 @@ def result():
         overlay = ['Alan Walker - Alone.mp4','Alan Walker - Faded.mp4']
         mix(video,overlay)
         return render_template('result.html',video=video)
-if __name__ == '__main__':
 
-    app.run(host='192.168.2.100',debug=True,threaded=True,port=9487)
+@app.route('/turing/',methods=['GET','POST'])
+def turing():
+    if request.method == 'GET':
+        return 'QQ'
+    if request.method == 'POST':
+        video = unquote(request.values.get('video').split('/')[-1])
+        overlay = ['Alan Walker - Alone.mp4','Alan Walker - Faded.mp4']
+        mix(video,overlay)
+        return render_template('turing.html',video=video)
+if __name__ == '__main__':
+    host = '127.0.0.1'
+    if len(argv) ==2:
+        host = argv[1]
+    
+    app.run(host=host,debug=True,threaded=True,port=9487)
 
 
