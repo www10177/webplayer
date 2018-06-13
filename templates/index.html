@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VideoMixer</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <style>
+  .button {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    display: inline-block;
+margin: 0;
+    font-size:22px;
+}
+</style>
+</head> 
+
+<body>
+  <div>
+  <video id="player" class="video-js vjs-default-skin" controls preload="auto" width="720" height="480">
+ <source id='videoSource' src="../static/video/Alan Walker - Alone.mp4" type="video/mp4" />
+</video>
+</div>
+<div>
+<button class='button' onclick="playVideo('../static/video/glory day (Japanese).mp4','video/mp4')">Glory Day (Japanese) </button>
+<button class='button' onclick="playVideo('../static/video/Alan Walker - Alone.mp4','video/mp4')">Alan Walker - Alone</button>
+<button class='button' onclick="playVideo('../static/video/Alan Walker - Faded.mp4','video/mp4')">Alan Walker - Faded</button>
+<button class='button' onclick="playVideo('../static/video/Galantis - Hunter (Official Music Video).mp4','video/mp4')">Galantis - Hunter</button>
+<button class='button' onclick="playVideo('../static/video/Marshmello - Alone.mp4','video/mp4')">Marshmello - Alone</button>
+</div>
+<button class='button' onclick=post('/result/')>MIXBTN</button>
+</body>
+
+
+<script type="text/javascript">
+function playVideo(videoSource, type) {
+  var videoElm = document.getElementById('player');
+  var videoSourceElm = document.getElementById('videoSource');
+   if (!videoElm.paused) {
+        videoElm.pause();
+     }
+
+   videoSourceElm.src = videoSource;
+   videoSourceElm.type = type;
+
+    videoElm.load();
+    videoElm.play();
+  }
+function post(path,  method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    params = {'video':player.currentSrc}
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+</script>
+
+</html>

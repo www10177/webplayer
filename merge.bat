@@ -1,0 +1,1 @@
+ffmpeg.exe -i "./static/video/Galantis - Hunter (Official Music Video).mp4" -i "./temp/Galantis - Hunter (Official Music Video).wav" -c:v copy -c:a aac -strict experimental -map 0:v:0 -map 1:a:0 output.mp4
