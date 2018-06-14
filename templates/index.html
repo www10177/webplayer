@@ -19,47 +19,13 @@
     </video>
 
     <div class="vid-list-container">
-      <div class="vid-list">
-
-        <div class="vid-item" onclick="playVideo('../static/video/glory day (Japanese).mp4','video/mp4')">
-          <div class="thumb"><img src="http://img.youtube.com/vi/eg6kNoJmzkY/0.jpg"></div>
-          <div class="desc">Jessica Hernandez & the Deltas - Dead Brains</div>
+      <div class="vid-list" id ="mainVideoList">
+        {% for item in video %}
+        <div class="vid-item" onClick="playVideo('../static/video/{{ item | safe }}.mp4','video/mp4')">
+          <div class="thumb"><img src="../static/thumb/{{ item | safe }}.jpg"></div>
+          <div class="desc">{{ item }}</div>
         </div>
-
-        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/_Tz7KROhuAw?autoplay=1&rel=0&showinfo=0&autohide=1'">
-          <div class="thumb"><img src="http://img.youtube.com/vi/_Tz7KROhuAw/0.jpg"></div>
-          <div class="desc">Barbatuques - CD Tum P&aacute; - Sambalel&ecirc;</div>
-        </div>
-
-        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/F1f-gn_mG8M?autoplay=1&rel=0&showinfo=0&autohide=1'">
-          <div class="thumb"><img src="http://img.youtube.com/vi/F1f-gn_mG8M/0.jpg"></div>
-          <div class="desc">Eleanor Turner plays Baroque Flamenco</div>
-        </div>
-
-        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/fB8UTheTR7s?autoplay=1&rel=0&showinfo=0&autohide=1'">
-          <div class="thumb"><img src="http://img.youtube.com/vi/fB8UTheTR7s/0.jpg"></div>
-          <div class="desc">Sleepy Man Banjo Boys: Bluegrass</div>
-        </div>
-
-        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/0SNhAKyXtC8?autoplay=1&rel=0&showinfo=0&autohide=1'">
-          <div class="thumb"><img src="http://img.youtube.com/vi/0SNhAKyXtC8/0.jpg"></div>
-          <div class="desc">Edmar Castaneda: NPR Music Tiny Desk Concert</div>
-        </div>
-
-        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/RTHI_uGyfTM?autoplay=1&rel=0&showinfo=0&autohide=1'">
-          <div class="thumb"><img src="http://img.youtube.com/vi/RTHI_uGyfTM/0.jpg"></div>
-          <div class="desc">Winter Harp performs Caravan</div>
-        </div>
-
-        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/abQRt6p8T7g?autoplay=1&rel=0&showinfo=0&autohide=1'">
-          <div class="thumb"><img src="http://img.youtube.com/vi/abQRt6p8T7g/0.jpg"></div>
-          <div class="desc">The Avett Brothers Tiny Desk Concert</div>
-        </div>
-
-        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/fpmN9JorFew?autoplay=1&rel=0&showinfo=0&autohide=1'">
-          <div class="thumb"><img src="http://img.youtube.com/vi/fpmN9JorFew/0.jpg"></div>
-          <div class="desc">Tracy Chapman - Give Me One Reason</div>
-        </div>
+        {% endfor %}
 
 
       </div>
@@ -133,6 +99,29 @@
 </script>
 
 <script type="text/javascript">
+/*
+//Dynamictic adding vid-item\
+var videoPath = '../static/video/';
+var thumbPath = '../static/thumb/';
+
+var vid = document.createElement("div");
+vid.className = 'vid-item';
+vid.onclck=playVideo(videoPath.concat({{ item|safe }}),'video/mp4');
+var thumb =document.createElement("div");
+thumb.className = "thumb";
+var img = document.createElement("img");
+img.src = thumbPath.concat( {{item | safe}});
+thumb.appendChild(img);
+vid.appendChild(thumb);
+var desc = document.createElement('div');
+desc.innerHTML={{item}};
+vid.appendChild(desc);
+document.getElementById(mainVideoList).appendChild(vid);
+
+
+*/
+
+//Arrow Scrolling
   $(document).ready(function() {
     $(".arrow-right").bind("click", function(event) {
       event.preventDefault();
