@@ -82,7 +82,8 @@ def result():
     if request.method == 'POST':
         # exporting_threads[thread_id].start()
         video = unquote(request.values.get('video').split('/')[-1])
-        overlay = choices(getVideoName(),k=randint(0,len(getVideoName())))
+        overlay = choices(getVideoName(),k=randint(1,len(getVideoName())))
+        print(overlay)
         path = createMixAudio(video,overlay)
         mixVideoAudio(path)
         return render_template('result.html',video=video)
