@@ -3,26 +3,81 @@
 
 <head>
   <title>VideoMixer</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-  <style>
-  .button {
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    display: inline-block;
-margin: 0;
-    font-size:22px;
-}
-</style>
+  <meta name="viewport" content="charset=UTF-8, width=470, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+
+  <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
 </head>
 
 <body>
-  <div>
-  <video id="player" class="video-js vjs-default-skin"controls muted  preload="auto" width="720" height="480">
- <source id='videoSource' src="../static/video/Alan Walker - Alone.mp4" type="video/mp4" />
-</video>
+  <div class=container>
+    <video id="player" class="video-js vjs-default-skin" controls muted preload="auto">
+    <source id='videoSource' src="../static/video/Alan Walker - Alone.mp4" type="video/mp4" />
+    </video>
 
+    <div class="vid-list-container">
+      <div class="vid-list">
+
+        <div class="vid-item" onclick="playVideo('../static/video/glory day (Japanese).mp4','video/mp4')">
+          <div class="thumb"><img src="http://img.youtube.com/vi/eg6kNoJmzkY/0.jpg"></div>
+          <div class="desc">Jessica Hernandez & the Deltas - Dead Brains</div>
+        </div>
+
+        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/_Tz7KROhuAw?autoplay=1&rel=0&showinfo=0&autohide=1'">
+          <div class="thumb"><img src="http://img.youtube.com/vi/_Tz7KROhuAw/0.jpg"></div>
+          <div class="desc">Barbatuques - CD Tum P&aacute; - Sambalel&ecirc;</div>
+        </div>
+
+        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/F1f-gn_mG8M?autoplay=1&rel=0&showinfo=0&autohide=1'">
+          <div class="thumb"><img src="http://img.youtube.com/vi/F1f-gn_mG8M/0.jpg"></div>
+          <div class="desc">Eleanor Turner plays Baroque Flamenco</div>
+        </div>
+
+        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/fB8UTheTR7s?autoplay=1&rel=0&showinfo=0&autohide=1'">
+          <div class="thumb"><img src="http://img.youtube.com/vi/fB8UTheTR7s/0.jpg"></div>
+          <div class="desc">Sleepy Man Banjo Boys: Bluegrass</div>
+        </div>
+
+        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/0SNhAKyXtC8?autoplay=1&rel=0&showinfo=0&autohide=1'">
+          <div class="thumb"><img src="http://img.youtube.com/vi/0SNhAKyXtC8/0.jpg"></div>
+          <div class="desc">Edmar Castaneda: NPR Music Tiny Desk Concert</div>
+        </div>
+
+        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/RTHI_uGyfTM?autoplay=1&rel=0&showinfo=0&autohide=1'">
+          <div class="thumb"><img src="http://img.youtube.com/vi/RTHI_uGyfTM/0.jpg"></div>
+          <div class="desc">Winter Harp performs Caravan</div>
+        </div>
+
+        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/abQRt6p8T7g?autoplay=1&rel=0&showinfo=0&autohide=1'">
+          <div class="thumb"><img src="http://img.youtube.com/vi/abQRt6p8T7g/0.jpg"></div>
+          <div class="desc">The Avett Brothers Tiny Desk Concert</div>
+        </div>
+
+        <div class="vid-item" onClick="document.getElementById('vid_frame').src='http://youtube.com/embed/fpmN9JorFew?autoplay=1&rel=0&showinfo=0&autohide=1'">
+          <div class="thumb"><img src="http://img.youtube.com/vi/fpmN9JorFew/0.jpg"></div>
+          <div class="desc">Tracy Chapman - Give Me One Reason</div>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="arrows">
+      <div class="arrow-left"><i class="fas fa-arrow-circle-left"></i></i></div>
+      <div class="arrow-right"><i class="fas fa-arrow-circle-right"></i></div>
+    </div>
+  </div>
+  <div class=BTNcontainer>
+  <div class='button'><button  onclick=post('/result/')>MIX</button></div>
+  <div class='button'><button  onclick=post('/turing/')>Turing Test</button></div>
 </div>
+  </div>
+
+
+
+  <!--
 <div>
 <button class='button' onclick="playVideo('../static/video/glory day (Japanese).mp4','video/mp4')">Glory Day (Japanese) </button>
 <button class='button' onclick="playVideo('../static/video/Alan Walker - Alone.mp4','video/mp4')">Alan Walker - Alone</button>
@@ -30,27 +85,27 @@ margin: 0;
 <button class='button' onclick="playVideo('../static/video/Galantis - Hunter (Official Music Video).mp4','video/mp4')">Galantis - Hunter</button>
 <button class='button' onclick="playVideo('../static/video/Marshmello - Alone.mp4','video/mp4')">Marshmello - Alone</button>
 </div>
-<button class='button' onclick=post('/result/')>MIX</button>
-<button class='button' onclick=post('/turing/')>Turing Test</button>
+
+-->
 </body>
 
 
 <script type="text/javascript">
+  function playVideo(videoSource, type) {
+    var videoElm = document.getElementById('player');
+    var videoSourceElm = document.getElementById('videoSource');
+    if (!videoElm.paused) {
+      videoElm.pause();
+    }
 
-function playVideo(videoSource, type) {
-  var videoElm = document.getElementById('player');
-  var videoSourceElm = document.getElementById('videoSource');
-   if (!videoElm.paused) {
-        videoElm.pause();
-     }
-
-   videoSourceElm.src = videoSource;
-   videoSourceElm.type = type;
+    videoSourceElm.src = videoSource;
+    videoSourceElm.type = type;
 
     videoElm.load();
     videoElm.play();
   }
-function post(path,  method) {
+
+  function post(path, method) {
     method = method || "post"; // Set method to post by default if not specified.
 
     // The rest of this code assumes you are not using a library.
@@ -58,21 +113,41 @@ function post(path,  method) {
     var form = document.createElement("form");
     form.setAttribute("method", method);
     form.setAttribute("action", path);
-    params = {'video':player.currentSrc}
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
+    params = {
+      'video': player.currentSrc
+    }
+    for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", key);
+        hiddenField.setAttribute("value", params[key]);
 
-            form.appendChild(hiddenField);
-        }
+        form.appendChild(hiddenField);
+      }
     }
 
     document.body.appendChild(form);
     form.submit();
-}
+  }
 </script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".arrow-right").bind("click", function(event) {
+      event.preventDefault();
+      $(".vid-list-container").stop().animate({
+        scrollLeft: "+=336"
+      }, 750);
+    });
+    $(".arrow-left").bind("click", function(event) {
+      event.preventDefault();
+      $(".vid-list-container").stop().animate({
+        scrollLeft: "-=336"
+      }, 750);
+    });
+  });
+</script>
+
 
 </html>
